@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: RyangXie
  * @Date: 2021-12-10 16:33:08
- * @LastEditTime: 2021-12-11 21:10:10
+ * @LastEditTime: 2021-12-27 21:37:33
  * @LastEditors: RyangXie
  * @Reference: 
  */
@@ -11,6 +11,8 @@
 import axios from 'axios'
 // 引入进度条
 import nprogress from 'nprogress'
+// 在当前模块中引入store
+import store from '@/store'
 // 引入进度条样式
 import 'nprogress/nprogress.css'
 
@@ -27,6 +29,14 @@ requests.interceptors.request.use((config) => {
   // config:配置对象，对象里面有一个属性很重要，header请求头
   // 进度条开始动
   nprogress.start()
+  // console.log(store);
+  if (store.state.detail.uuid_token) {
+    // 给请求头添加一个字段(userTempId):和后端商量好
+    config.headers.userTempId = store.state.detail.uuid_token
+  }
+  if(store.state.user.token) {
+    config.headers.token = store.state.user.token
+  }
   return config
 })
 

@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: RyangXie
  * @Date: 2021-12-10 08:41:28
- * @LastEditTime: 2021-12-13 23:23:51
+ * @LastEditTime: 2021-12-27 12:48:56
  * @LastEditors: RyangXie
  * @Reference: 
 -->
@@ -12,22 +12,7 @@
     <div class="sortList clearfix">
       <div class="center">
         <!--banner轮播-->
-        <div class="swiper-container"
-             ref="mySwiper">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide"
-                 v-for="(carousel,index) in bannerList"
-                 :key="carousel.id">
-              <img :src="carousel.imgUrl" />
-            </div>
-          </div>
-          <!-- 如果需要分页器 -->
-          <div class="swiper-pagination"></div>
-
-          <!-- 如果需要导航按钮 -->
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-button-next"></div>
-        </div>
+        <Carsousel :list="bannerList" />
       </div>
       <div class="right">
         <div class="news">
@@ -127,28 +112,7 @@ export default {
     })
   },
   // 监听bannerList数据的变化，因为这条数据发生过变化...由空数组变为非空数组
-  watch: {
-    bannerList: {
-      handler (newValue, oldValue) {
-        this.$nextTick(() => {
-          var mySwiper = new Swiper('.swiper-container', {
-            loop: true, // 循环模式选项
-            // 如果需要分页器
-            pagination: {
-              el: '.swiper-pagination',
-              clickable: true
-            },
 
-            // 如果需要前进后退按钮
-            navigation: {
-              nextEl: '.swiper-button-next',
-              prevEl: '.swiper-button-prev',
-            },
-          })
-        })
-      }
-    }
-  }
 }
 </script>
 
@@ -223,7 +187,7 @@ export default {
           width: 25%;
 
           .list-item {
-            background-image: url(./images/icons.png);
+            background-image: url(~@/assets/images/icons.png);
             width: 61px;
             height: 40px;
             display: block;

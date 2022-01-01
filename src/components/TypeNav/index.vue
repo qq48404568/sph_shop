@@ -1,8 +1,8 @@
 <!--
- * @Description: 
+ * @Description: 三级联动导航组件
  * @Author: RyangXie
  * @Date: 2021-12-10 08:29:11
- * @LastEditTime: 2021-12-13 13:14:08
+ * @LastEditTime: 2021-12-18 17:20:36
  * @LastEditors: RyangXie
  * @Reference: 
 -->
@@ -34,7 +34,7 @@
                 <div class="item-list clearfix"
                      :style="{display:currentIndex === index ? 'block' : 'none'}">
                   <div class="subitem"
-                       v-for="(c2,index) in c1.categoryChild"
+                       v-for="(c2) in c1.categoryChild"
                        :key="c2.categoryId">
                     <dl class="fore">
                       <dt>
@@ -42,7 +42,7 @@
                            :data-category2Id="c2.categoryId">{{c2.categoryName}}</a>
                       </dt>
                       <dd>
-                        <em v-for="(c3,index) in c2.categoryChild"
+                        <em v-for="(c3) in c2.categoryChild"
                             :key="c3.categoryId">
                           <a :data-categoryName="c3.categoryName"
                              :data-category3Id="c3.categoryId">{{c3.categoryName}}</a>
@@ -112,7 +112,6 @@ export default {
       if (this.$route.path != '/home') {
         this.show = false
       }
-
     },
     goSearch (event) {
       //event.target:获取到的是出发事件的元素(div、h3、a、em、dt、dl)

@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: RyangXie
  * @Date: 2021-12-09 12:11:29
- * @LastEditTime: 2021-12-13 23:50:51
+ * @LastEditTime: 2021-12-28 14:11:46
  * @LastEditors: RyangXie
  * @Reference: 
 -->
@@ -14,9 +14,9 @@
     <Recommend />
     <Rank />
     <Like />
-    <Floor v-for="(floor,index) in floorlist"
+    <Floor v-for="(floor) in floorlist"
            :key="floor.id"
-           :list="floor"/>
+           :list="floor" />
     <Brand />
   </div>
 </template>
@@ -40,6 +40,7 @@ export default {
     Brand
   },
   mounted () {
+    // 获取floor组件的数据
     this.$store.dispatch('getFloorList')
   },
   computed: {
